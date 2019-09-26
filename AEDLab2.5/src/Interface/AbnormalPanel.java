@@ -30,7 +30,7 @@ public class AbnormalPanel extends javax.swing.JPanel {
         populateTable();
     }
     
-   /* public void populateTable(){
+    public void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel) tblVitalSigns.getModel();
         dtm.setRowCount(0);
         for(VitalSigns vs: vsh.getAbnormalList(maxbp,minbp)){
@@ -41,7 +41,7 @@ public class AbnormalPanel extends javax.swing.JPanel {
         }
         
     }
-    */
+    
     private void setFieldEnabled(boolean b){
         txtTemperature.setEnabled(b);
         txtBloodPressure.setEnabled(b);
