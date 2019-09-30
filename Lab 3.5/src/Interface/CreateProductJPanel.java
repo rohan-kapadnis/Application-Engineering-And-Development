@@ -8,7 +8,7 @@ package Interface;
 import javax.swing.JOptionPane;
 import Business.ProductDirectory;
 import Business.Product;
-import java.awt.CardLayout;
+
 import javax.swing.JPanel;
 /**
  *
@@ -23,7 +23,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
     
     
 
-    CreateProductJPanel(JPanel rightPanel, ProductDirectory accDir) {
+    CreateProductJPanel(JPanel rightPanel, ProductDirectory prodDir) {
          //To change body of generated methods, choose Tools | Templates.
          initComponents();
         this.prodDir = prodDir;
@@ -48,7 +48,6 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         txtPrice = new javax.swing.JTextField();
         txtDescription = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
-        backBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 255));
 
@@ -67,13 +66,6 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
-            }
-        });
-
-        backBtn.setText("back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
             }
         });
 
@@ -101,10 +93,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                             .addComponent(txtProdName)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(btnCreate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(backBtn)))
+                        .addComponent(btnCreate)))
                 .addContainerGap(326, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,9 +119,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                     .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCreate)
-                .addGap(18, 18, 18)
-                .addComponent(backBtn)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,16 +149,8 @@ public class CreateProductJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Account Created Successfully");
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        this.rightPanel.remove(this);
-        CardLayout layout = (CardLayout) this.rightPanel.getLayout();
-        layout.previous(rightPanel);
-    }//GEN-LAST:event_backBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton btnCreate;
     private javax.swing.JLabel lblAccNo;
     private javax.swing.JLabel lblBalance;

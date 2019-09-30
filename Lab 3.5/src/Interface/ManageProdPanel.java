@@ -4,29 +4,31 @@
  * and open the template in the editor.
  */
 package Interface;
-
 import Business.Product;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author info
  */
 public class ManageProdPanel extends javax.swing.JPanel {
-
     /**
      * Creates new form ManageAccountPanel
      */
+    private ProductDirectory accDir;
     private ProductDirectory prodDir;
     private ArrayList<Product> searchList;
-    ManageProdPanel( ProductDirectory prodDir) {
+    private JPanel rightPanel;
+    ManageProdPanel(JPanel rightPanel, ProductDirectory prodDir) {
+         //To change body of generated methods, choose Tools | Templates.
         initComponents();
         this.prodDir=prodDir;
-        populate();
+        this.rightPanel = rightPanel;
+         populate();
     }
     
     public void populate(){
@@ -57,8 +59,8 @@ public class ManageProdPanel extends javax.swing.JPanel {
         lblSearchAccNo = new javax.swing.JLabel();
         txtsearch = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 255));
 
@@ -92,17 +94,17 @@ public class ManageProdPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-
         backBtn.setText("<<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -118,15 +120,15 @@ public class ManageProdPanel extends javax.swing.JPanel {
                 .addContainerGap(80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backBtn)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(lblSearchAccNo)
                             .addGap(18, 18, 18)
                             .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnSearch))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
@@ -165,27 +167,27 @@ public class ManageProdPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-        String keyword = txtsearch.getText();
-        searchList = new ArrayList<Product>();
-        for(Product p : prodDir.getProductDirectory()){
-            if(p.getName().contains(keyword)){
-                searchList.add(p);
-            }
-            
-        }
-        populate(searchList);
-    }//GEN-LAST:event_btnSearchActionPerformed
-
+    
+    
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        this.rightPanel.remove(this);
-        CardLayout layout = (CardLayout) this.rightPanel.getLayout();
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 
-
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        Product result = prodDir.searchAccount(txtsearch.getText());
+        if(result == null){
+            JOptionPane.showMessageDialog(null, "Account does not exist", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            ViewPanel panel = new ViewPanel(rightPanel, result);
+            rightPanel.add("viewPanel", panel);
+            CardLayout layout = (CardLayout) rightPanel.getLayout();
+            layout.next(rightPanel);
+    }//GEN-LAST:event_btnSearchActionPerformed
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton btnDelete;

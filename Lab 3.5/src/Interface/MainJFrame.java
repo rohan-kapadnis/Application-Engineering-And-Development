@@ -39,7 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        leftPanel.setBackground(new java.awt.Color(255, 204, 204));
+        leftPanel.setBackground(new java.awt.Color(255, 153, 153));
 
         btnProdManager.setText("Product Manager");
         btnProdManager.addActionListener(new java.awt.event.ActionListener() {

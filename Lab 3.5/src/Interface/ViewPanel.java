@@ -9,6 +9,7 @@ import Business.Product;
 import javax.swing.JOptionPane;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 /**
  *
  * @author info
@@ -20,16 +21,30 @@ public class ViewPanel extends javax.swing.JPanel {
      */
     private ProductDirectory prodDir;
     private Product product;
-    ViewPanel(Product prod, ProductDirectory accDir) {
+    private JPanel rightPanel;
+    ViewPanel(Product prod, ProductDirectory prodDir) {
         initComponents();
         this.product=prod;
         txtAvailablity.setText(String.valueOf(prod.getAvailNum()));
         txtPrice.setText(String.valueOf(prod.getPrice()));
         txtProdName.setText(prod.getName());
         txtDesc.setText(prod.getDescription());
-        this.prodDir = accDir;
+        this.prodDir = prodDir;
     }
 
+    ViewPanel(JPanel rightPanel, Product prod) {
+        //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.product=prod;
+        txtAvailablity.setText(String.valueOf(prod.getAvailNum()));
+        txtPrice.setText(String.valueOf(prod.getPrice()));
+        txtProdName.setText(prod.getName());
+        txtDesc.setText(prod.getDescription());
+        this.prodDir = prodDir;
+        this.rightPanel = rightPanel;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,8 +201,8 @@ public class ViewPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        this.rightPanel.remove(this);
-        CardLayout layout = (CardLayout) this.rightPanel.getLayout();
+        rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
         layout.previous(rightPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 
