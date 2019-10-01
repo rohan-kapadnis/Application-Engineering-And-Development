@@ -48,6 +48,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         txtPrice = new javax.swing.JTextField();
         txtDescription = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 153, 255));
 
@@ -60,7 +61,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
 
         lblBankName.setText("Price*");
 
-        lblBalance.setText("Description");
+        lblBalance.setText("Description*");
 
         btnCreate.setText("Create Account");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +69,8 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                 btnCreateActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("* Required fields");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,8 +96,10 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                             .addComponent(txtProdName)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(btnCreate)))
-                .addContainerGap(326, Short.MAX_VALUE))
+                        .addComponent(btnCreate)
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel1)))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +123,9 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                     .addComponent(lblBalance)
                     .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnCreate)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreate)
+                    .addComponent(jLabel1))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -132,10 +139,33 @@ public class CreateProductJPanel extends javax.swing.JPanel {
                 return;
             }
             
+            String price = txtPrice.getText();
+            if(price == null || price.equals("")){
+                JOptionPane.showMessageDialog(null, "Price can't be empty");
+                return;
+            }
+            String avail = txtAvailablity.getText();
+            if(avail == null || avail.equals("") ){
+                JOptionPane.showMessageDialog(null, "Availability can't be empty");
+                return;
+            }
+            
+            String desc = txtDescription.getText();
+            if(desc == null || desc.equals("") ){
+                JOptionPane.showMessageDialog(null, "Description can't be empty");
+                return;
+            }
+            
             try{
                 Double.parseDouble(txtPrice.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Enter number for price");
+            }
+            
+            try{
+                Integer.parseInt(txtAvailablity.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Enter number for availability");
             }
             
             
@@ -152,6 +182,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAccNo;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblBankName;

@@ -22,7 +22,7 @@ public class ViewPanel extends javax.swing.JPanel {
     private ProductDirectory prodDir;
     private Product product;
     private JPanel rightPanel;
-    ViewPanel(Product prod, ProductDirectory prodDir) {
+   /* ViewPanel(Product prod, ProductDirectory prodDir) {
         initComponents();
         this.product=prod;
         txtAvailablity.setText(String.valueOf(prod.getAvailNum()));
@@ -31,7 +31,7 @@ public class ViewPanel extends javax.swing.JPanel {
         txtDesc.setText(prod.getDescription());
         this.prodDir = prodDir;
     }
-
+*/
     ViewPanel(JPanel rightPanel, Product prod) {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
