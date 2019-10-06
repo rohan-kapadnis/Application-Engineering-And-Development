@@ -9,6 +9,7 @@ import Business.Product;
 import javax.swing.JOptionPane;
 import Business.ProductDirectory;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 /**
  *
@@ -32,7 +33,7 @@ public class ViewPanel extends javax.swing.JPanel {
         this.prodDir = prodDir;
     }
 */
-    ViewPanel(JPanel rightPanel, Product prod) {
+    ViewPanel(JPanel rightPanel, Product prod,ProductDirectory prodDir) {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
         this.product=prod;
@@ -42,6 +43,8 @@ public class ViewPanel extends javax.swing.JPanel {
         txtDesc.setText(prod.getDescription());
         this.prodDir = prodDir;
         this.rightPanel = rightPanel;
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(true);
     }
 
     
@@ -67,7 +70,7 @@ public class ViewPanel extends javax.swing.JPanel {
         txtDesc = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 153, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         txtPrice.setEditable(false);
 
@@ -175,7 +178,7 @@ public class ViewPanel extends javax.swing.JPanel {
             txtAvailablity.setEditable(true);
             txtPrice.setEditable(true);
             txtProdName.setEditable(true);
-            txtDesc.setEnabled(true);
+            txtDesc.setEditable(true);
             btnSave.setEnabled(true);
             btnUpdate.setEnabled(false);
         
@@ -183,26 +186,83 @@ public class ViewPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+           String name = txtProdName.getText();
+            Double Price = null; 
+            
+            if(name == null || name.equals("")){
+                JOptionPane.showMessageDialog(null, "Name can't be empty");
+                return;
+            }
+            
+            String price = txtPrice.getText();
+            if(price == null || price.equals("")){
+                JOptionPane.showMessageDialog(null, "Price can't be empty");
+                return;
+            }
+            String avail = txtAvailablity.getText();
+            if(avail == null || avail.equals("") ){
+                JOptionPane.showMessageDialog(null, "Availability can't be empty");
+                return;
+            }
+            
+            String desc = txtDesc.getText();
+            if(desc == null || desc.equals("") ){
+                JOptionPane.showMessageDialog(null, "Description can't be empty");
+                return;
+            }
+           
+            try{
+               Price =  Double.parseDouble(txtPrice.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Enter number for price");
+                return;
+            }
+            
+            try{
+               Integer.parseInt(txtAvailablity.getText());
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Enter number for availability");
+            }
+           
             txtAvailablity.setEditable(false);
             txtPrice.setEditable(false);
             txtProdName.setEditable(false);
-            txtDesc.setEnabled(false);
+            txtDesc.setEditable(false);
             btnSave.setEnabled(false);
             btnUpdate.setEnabled(true);
+            
+            /*Product prod = prodDir.addProduct();
+            prod.setName(txtProdName.getText());
+            prod.setAvailNum(Integer.parseInt(txtAvailablity.getText()));
+            prod.setPrice(Price);
+            prod.setDescription(txtDesc.getText());
         
+            */
+            
             product.setName(txtProdName.getText());
-            product.setPrice(Double.parseDouble(txtPrice.getText()));
+            product.setPrice(Price);
             product.setAvailNum(Integer.parseInt(txtAvailablity.getText()));
-            product.setDescription(txtDesc.getText());
-        
+            product.setDescription(txtDesc.getText()); 
+            
             JOptionPane.showMessageDialog(null, "Account updated successfully");        
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        /*rightPanel.remove(this);
+        CardLayout layout = (CardLayout) rightPanel.getLayout();
+        layout.previous(rightPanel);
+        */
         rightPanel.remove(this);
         CardLayout layout = (CardLayout) rightPanel.getLayout();
+        Component [] comps = this.rightPanel.getComponents();
+        for(Component comp : comps){
+            if(comp instanceof ManageProdPanel){
+                ManageProdPanel managePanel = (ManageProdPanel) comp;
+                managePanel.populate(prodDir.getProductDirectory());
+            }
+        }
         layout.previous(rightPanel);
     }//GEN-LAST:event_backBtnActionPerformed
 

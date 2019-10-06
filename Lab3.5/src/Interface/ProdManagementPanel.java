@@ -39,7 +39,7 @@ public class ProdManagementPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnManage = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 153, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         btnCreate.setText("Create Product");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {

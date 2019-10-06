@@ -50,7 +50,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 153, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblHead.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblHead.setText("Create Product");
@@ -134,6 +134,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
             String name = txtProdName.getText();
+            Double Price = null; 
             if(name == null || name.equals("")){
                 JOptionPane.showMessageDialog(null, "Name can't be empty");
                 return;
@@ -157,9 +158,10 @@ public class CreateProductJPanel extends javax.swing.JPanel {
             }
             
             try{
-                Double.parseDouble(txtPrice.getText());
+               Price =  Double.parseDouble(txtPrice.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Enter number for price");
+                return;
             }
             
             try{
@@ -173,7 +175,7 @@ public class CreateProductJPanel extends javax.swing.JPanel {
             Product prod = prodDir.addProduct();
             prod.setName(txtProdName.getText());
             prod.setAvailNum(Integer.parseInt(txtAvailablity.getText()));
-            prod.setPrice(Double.parseDouble(txtPrice.getText()));
+            prod.setPrice(Price);
             prod.setDescription(txtDescription.getText());
             
             JOptionPane.showMessageDialog(null, "Account Created Successfully");

@@ -62,11 +62,12 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(btnProdManager)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addContainerGap(793, Short.MAX_VALUE))
         );
 
         rightSplitPane.setLeftComponent(leftPanel);
 
+        rightPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightPanel.setLayout(new java.awt.CardLayout());
         rightSplitPane.setRightComponent(rightPanel);
 
@@ -74,11 +75,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+            .addComponent(rightSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1450, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rightSplitPane)
+            .addComponent(rightSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
         );
 
         pack();
