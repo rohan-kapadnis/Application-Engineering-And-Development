@@ -64,6 +64,12 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MAX BP");
 
+        maxbpTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxbpTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("MIN BP");
 
         abnBtn.setText("ABNORMAL ");
@@ -182,6 +188,10 @@ public class MainJFrame extends javax.swing.JFrame {
         AbnormalPanel abnormalpanel = new AbnormalPanel(vsh, maxbp,minbp);
         SplitPane.setRightComponent(abnormalpanel);
     }//GEN-LAST:event_abnBtnActionPerformed
+
+    private void maxbpTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxbpTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxbpTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
