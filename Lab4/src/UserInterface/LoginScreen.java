@@ -24,10 +24,12 @@ public class LoginScreen extends javax.swing.JPanel {
      */
     List<User> list;
     JPanel panelRight;
-    public LoginScreen(JPanel panelRight, List<User> list) {
+    String role;
+    public LoginScreen(String role,JPanel panelRight, List<User> list) {
         initComponents();
         this.list = list;
         this.panelRight = panelRight;
+        this.role=role;
         initialize();
     }
 
@@ -98,13 +100,22 @@ public class LoginScreen extends javax.swing.JPanel {
         }
         
         User u = (User)comboUser.getSelectedItem();
-        if(u!=null){
+        if(u!=null && role.equalsIgnoreCase("Supplier")){
             Supplier s = (Supplier) u;
             if(s.verify(txtPword.getText()))
                 grantAccessTo(u);
          else
-                JOptionPane.showConfirmDialog(this, "Please Enter a valid password\n"
+                JOptionPane.showConfirmDialog(panelRight, "Please Enter a valid password\n"
                                                     +"Ensure you have selected correct supplier");
+        }
+        else{
+        
+                Customer c = (Customer) u;
+                if(c.verify((txtPword.getText())))
+                    grantAccessTo(u);
+                else
+                    JOptionPane.showMessageDialog(panelRight,  "Please Enter a valid password\n"
+                                                    +"Ensure you have selected correct customer");
         }
         
     }//GEN-LAST:event_btnSubmitActionPerformed
