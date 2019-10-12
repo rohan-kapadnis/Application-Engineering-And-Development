@@ -29,6 +29,7 @@ public class AdminMainScreen extends javax.swing.JPanel {
         this.panelRight = panelRight;
         this.admin = admin;
         populate();
+        populateC();
     }
 
     /**
@@ -131,7 +132,7 @@ public class AdminMainScreen extends javax.swing.JPanel {
             Customer c = (Customer)u;
             Object[] row = new Object[dtm.getColumnCount()];
             row[0]=c;
-            row[1]=c.getDirectory().getProductList().size();
+            row[1]=c.getTimestamp();
             dtm.addRow(row);
         }
 
